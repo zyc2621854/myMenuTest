@@ -143,7 +143,7 @@ import android.widget.TextView;
             return 10;
 
         }
-        
+
         /*测试方法*/
         private void testMethod(){}
     }
