@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    >
+    <RelativeLayout
+        android:id="@+id/firstRelativeLayout"
+        android:layout_width="0px"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+        <ImageView
+            android:layout_centerHorizontal="true"
+            android:id="@+id/firstImageView"
+            android:background=""
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_centerHorizontal="true"
+            android:id="@+id/firstTextVIew"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="歌曲1"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/secondRelativeLayout"
+        android:layout_width="0px"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+        <ImageView
+            android:layout_centerHorizontal="true"
+            android:id="@+id/secondImageView"
+            android:background=""
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_centerHorizontal="true"
+            android:id="@+id/secondTextVIew"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="歌曲2"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/thirdRelativeLayout"
+        android:layout_width="0px"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+        <ImageView
+            android:layout_centerHorizontal="true"
+            android:id="@+id/thirdImageView"
+            android:background=""
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_centerHorizontal="true"
+            android:id="@+id/thirdTextVIew"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="歌曲3"/>
+    </RelativeLayout>
+</LinearLayout>
