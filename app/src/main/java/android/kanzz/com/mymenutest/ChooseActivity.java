@@ -149,6 +149,9 @@ import android.widget.TextView;
 
         /*测试方法2*/
         private void testMethod2(){}
+
+        /*测试方2222222222222222222222222222222222222法3*/
+        private void testMethod3(){}
     }
 
 
