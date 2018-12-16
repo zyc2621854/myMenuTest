@@ -42,8 +42,8 @@ import android.widget.TextView;
         ViewPager mViewPager = (ViewPager) findViewById(R.id.viewpager);
         mViewPager.setAdapter(new MyPagerAdapter(this));
 
-        SlidingTabLayout mSlidingTabLayout = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
-        mSlidingTabLayout.setViewPager(mViewPager);
+//        SlidingTabLayout mSlidingTabLayout = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
+//        mSlidingTabLayout.setViewPager(mViewPager);
 
         /*测试方法*/
 
