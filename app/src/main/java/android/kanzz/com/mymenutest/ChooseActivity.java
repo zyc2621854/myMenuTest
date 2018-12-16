@@ -19,19 +19,19 @@ import cn.bmob.v3.listener.SaveListener;
 import android.kanzz.com.mymenutest.Entity.User2;
 import android.widget.TextView;
 
-//public class ChooseActivity extends BaseActivity implements View.OnClickListener{
+public class ChooseActivity extends BaseActivity implements View.OnClickListener{
 
-    public class ChooseActivity extends BaseActivity {
+
 //    private Button btn_1;
 
     private void initView(){
 //        btn_1=(Button)findViewById(R.id.button_1);
     }
 
-//    private void initListener(){
-//        btn_1.setOnClickListener(this);
-//    }
-
+    @Override
+    public void onClick(View v){
+        
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,11 +39,6 @@ import android.widget.TextView;
         initView();
 //        initListener();
 
-        ViewPager mViewPager = (ViewPager) findViewById(R.id.viewpager);
-        mViewPager.setAdapter(new MyPagerAdapter(this));
-
-//        SlidingTabLayout mSlidingTabLayout = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
-//        mSlidingTabLayout.setViewPager(mViewPager);
 
         /*测试方法*/
 
@@ -104,46 +99,6 @@ import android.widget.TextView;
     }
 
 
-    private	class MyPagerAdapter extends PagerAdapter {
-
-        private Activity mActivity;
-
-        public	MyPagerAdapter(Activity mActivity){
-            this.mActivity=mActivity;
-        }
-
-        @Override
-        public boolean isViewFromObject(View view, Object o) {
-            return o == view;
-        }
-
-        @Override
-        public CharSequence getPageTitle(int pos) {
-            return "选项卡" +pos;
-        }
-
-        @Override
-        public Object instantiateItem(ViewGroup container, int pos) {
-            TextView tv=new TextView(mActivity);
-            tv.setText(pos+"");
-            tv.setTextSize(50.0f);
-            tv.setGravity(Gravity.CENTER);
-            container.addView(tv);
-
-            return tv;
-        }
-
-        @Override
-        public void destroyItem(ViewGroup container, int position, Object object) {
-            container.removeView((View) object);
-        }
-
-        @Override
-        public int getCount() {
-            return 10;
-
-        }
-    }
 
 
 }
