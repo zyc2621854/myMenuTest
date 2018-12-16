@@ -2,11 +2,18 @@ package android.kanzz.com.mymenutest;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.kanzz.com.mymenutest.Fragement.Chat;
+import android.kanzz.com.mymenutest.Fragement.Find;
+import android.kanzz.com.mymenutest.Fragement.Friend;
+import android.kanzz.com.mymenutest.ViewPager.ViewPagerFragmentAdapter;
 import android.kanzz.com.mymenutest.view.SlidingTabLayout;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,26 +24,107 @@ import android.widget.Button;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
 import android.kanzz.com.mymenutest.Entity.User2;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ChooseActivity extends BaseActivity implements View.OnClickListener{
 
 
-//    private Button btn_1;
+    private static final String TAG = "MainActivity.TAG";
+    public RelativeLayout firstRelativeLayout;
+    public RelativeLayout secondRelativeLayout;
+    public RelativeLayout thirdRelativeLayout;
+    ViewPager mViewPager;
+    ViewPagerFragmentAdapter mViewPagerFragmentAdapter;
+    FragmentManager mFragmentManager;
+    List<Fragment> mFragmentList = new ArrayList<Fragment>();
 
-    private void initView(){
-//        btn_1=(Button)findViewById(R.id.button_1);
-    }
+    public void initViewPager() {
+         mViewPager.addOnPageChangeListener(new ViewPagetOnPagerChangedLisenter());
+         mViewPager.setAdapter(mViewPagerFragmentAdapter);
+         mViewPager.setCurrentItem(0);
+         updateBottomRelativeLayoutSelect(true,false,false);
+     }
+
+    public void initView() {
+         mViewPager = (ViewPager) findViewById(R.id.viewpager);
+         firstRelativeLayout = (RelativeLayout) findViewById(R.id.firstRelativeLayout);
+         firstRelativeLayout.setOnClickListener(this);
+         secondRelativeLayout = (RelativeLayout) findViewById(R.id.secondRelativeLayout);
+         secondRelativeLayout.setOnClickListener(this);
+         thirdRelativeLayout = (RelativeLayout) findViewById(R.id.thirdRelativeLayout);
+         thirdRelativeLayout.setOnClickListener(this);
+     }
+
+    public void initFragmetList() {
+         Fragment chat = new Chat();
+         Fragment friend = new Friend();
+         Fragment find = new Find();
+         mFragmentList.add(chat);
+         mFragmentList.add(friend);
+         mFragmentList.add(find);
+     }
+
+
+
+
 
     @Override
     public void onClick(View v){
-        
+        switch (v.getId()) {
+             case R.id.firstRelativeLayout:
+                 mViewPager.setCurrentItem(0);
+                 updateBottomRelativeLayoutSelect(true,false,false);
+                 break;
+             case R.id.secondRelativeLayout:
+                 mViewPager.setCurrentItem(1);
+                 updateBottomRelativeLayoutSelect(false,true,false);
+                 break;
+             case R.id.thirdRelativeLayout:
+                 mViewPager.setCurrentItem(2);
+                 updateBottomRelativeLayoutSelect(false,false,true);
+                 break;
+             default:
+                 break;
+         }
     }
+
+    private void updateBottomRelativeLayoutSelect(boolean f, boolean s, boolean t) {
+         firstRelativeLayout.setSelected(f);
+         secondRelativeLayout.setSelected(s);
+         thirdRelativeLayout.setSelected(t);
+     }
+
+    class ViewPagetOnPagerChangedLisenter implements ViewPager.OnPageChangeListener {
+         @Override
+         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+ //            Log.d(TAG,"onPageScrooled");
+         }
+         @Override
+         public void onPageSelected(int position) {
+             Log.d(TAG,"onPageSelected");
+             boolean[] state = new boolean[3];
+             state[position] = true;
+             updateBottomRelativeLayoutSelect(state[0],state[1],state[2]);
+         }
+         @Override
+         public void onPageScrollStateChanged(int state) {
+             Log.d(TAG,"onPageScrollStateChanged");
+         }
+     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mFragmentManager = getSupportFragmentManager();
         setContentView(R.layout.activity_choose);
+        initFragmetList();
+        mViewPagerFragmentAdapter = new ViewPagerFragmentAdapter(mFragmentManager,mFragmentList);
         initView();
+        initViewPager();
 //        initListener();
 
 
