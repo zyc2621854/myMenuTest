@@ -96,6 +96,17 @@
                 android:textColor="@color/Gray"
                 android:textStyle="normal"/>
         </RadioGroup>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp">
+            <CheckBox
+                android:id="@+id/allow_checkBox"
+                android:layout_alignParentLeft="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="同意网站服务使用协议"/>
+        </RelativeLayout>
         <Button
             android:id="@+id/register_button_1"
             style="@style/base_button"

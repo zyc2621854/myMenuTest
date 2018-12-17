@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -23,7 +25,11 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     private RadioGroup sexRadioGroup;
     private RadioButton sexRadioButton1;
     private RadioButton sexRadioButton2;
+    private CheckBox allowCheckBox;
+    private Boolean isAllowRegister;
     private Boolean isMale;
+
+
     private void initView(){
         usernameEdit=(EditText)findViewById(R.id.register_et_username);
         passwordEdit1=(EditText)findViewById(R.id.register_et_password_1);
@@ -33,6 +39,11 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         registerButton=(Button)findViewById(R.id.register_button_1);
         registerButton.setOnClickListener(this);
         sexRadioGroup=(RadioGroup)findViewById(R.id.sex_radioGroup);
+        sexRadioButton1=(RadioButton)findViewById(R.id.male_radioButton);
+        sexRadioButton2=(RadioButton)findViewById(R.id.female_radioButton);
+        allowCheckBox=(CheckBox)findViewById(R.id.allow_checkBox);
+        isAllowRegister=false;
+
         sexRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -43,8 +54,15 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                 }
             }
         });
-        sexRadioButton1=(RadioButton)findViewById(R.id.male_radioButton);
-        sexRadioButton2=(RadioButton)findViewById(R.id.female_radioButton);
+
+        allowCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked==true)
+                    isAllowRegister=true;
+            }
+        });
+
     }
 
     @Override
@@ -60,6 +78,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     public void onClick(View v){
         switch (v.getId()){
             case R.id.register_button_1:
+                if(isAllowRegister){
                 User2 user=new User2();
                 user.setAccount(usernameEdit.getText().toString());
                 user.setPassword(passwordEdit1.getText().toString());
@@ -75,7 +94,8 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                             ShowToast("创建数据失败："+e.getMessage());
                         }
                     }
-                });
+                });}
+                else ShowToast("您尚未同意条款");
                 break;
                 default:break;
         }
