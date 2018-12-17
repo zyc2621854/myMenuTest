@@ -1,6 +1,8 @@
 package android.kanzz.com.mymenutest;
 
+import android.content.DialogInterface;
 import android.kanzz.com.mymenutest.Entity.User2;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -89,6 +91,23 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                     @Override
                     public void done(String objectId, BmobException e) {
                         if(e==null){
+                            AlertDialog.Builder dialog=new AlertDialog.Builder(RegisterActivity.this);
+                            dialog.setTitle("提示");
+                            dialog.setMessage("恭喜你注册成功");
+                            dialog.setCancelable(false);
+                            dialog.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                            dialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    
+                                }
+                            });
+                            dialog.show();
                             ShowToast("添加数据成功，返回objectId为"+objectId);
                         }else{
                             ShowToast("创建数据失败："+e.getMessage());
