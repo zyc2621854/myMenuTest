@@ -8,6 +8,8 @@ public class User2 extends BmobObject{
     private String password;
     private String mobilePhoneNumber;
     private String email;
+    private Boolean Sex;
+
     public String getAccount() {
         return account;
     }
@@ -37,4 +39,13 @@ public class User2 extends BmobObject{
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public Boolean getSex() {
+        return Sex;
+    }
+
+    public void setSex(Boolean sex) {
+        Sex = sex;
+    }
+
 }

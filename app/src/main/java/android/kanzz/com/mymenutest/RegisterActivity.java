@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
@@ -17,6 +20,10 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     private EditText phoneNumEdit;
     private EditText emailEdit;
     private Button registerButton;
+    private RadioGroup sexRadioGroup;
+    private RadioButton sexRadioButton1;
+    private RadioButton sexRadioButton2;
+    private Boolean isMale;
     private void initView(){
         usernameEdit=(EditText)findViewById(R.id.register_et_username);
         passwordEdit1=(EditText)findViewById(R.id.register_et_password_1);
@@ -25,6 +32,19 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         emailEdit=(EditText)findViewById(R.id.register_et_email);
         registerButton=(Button)findViewById(R.id.register_button_1);
         registerButton.setOnClickListener(this);
+        sexRadioGroup=(RadioGroup)findViewById(R.id.sex_radioGroup);
+        sexRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if(checkedId == sexRadioButton1.getId()){
+                    isMale=true;
+                }else if(checkedId == sexRadioButton2.getId()){
+                    isMale=false;
+                }
+            }
+        });
+        sexRadioButton1=(RadioButton)findViewById(R.id.male_radioButton);
+        sexRadioButton2=(RadioButton)findViewById(R.id.female_radioButton);
     }
 
     @Override
@@ -35,6 +55,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
 
     }
 
+
     @Override
     public void onClick(View v){
         switch (v.getId()){
@@ -44,6 +65,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                 user.setPassword(passwordEdit1.getText().toString());
                 user.setMobilePhoneNumber(phoneNumEdit.getText().toString());
                 user.setEmail(emailEdit.getText().toString());
+                user.setSex(isMale);
                 user.save(new SaveListener<String>() {
                     @Override
                     public void done(String objectId, BmobException e) {

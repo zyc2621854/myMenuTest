@@ -67,9 +67,39 @@
                 style="@style/base_editView"
                 android:hint="请输入您的邮箱"/>
         </RelativeLayout>
+        <RadioGroup
+            android:id="@+id/sex_radioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:layout_marginLeft="15dp"
+                android:textColor="@color/Gray"
+                android:text="性别:"/>
+            <RadioButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/male_radioButton"
+                android:text="男"
+                android:textColor="@color/Gray"
+                android:textStyle="normal"/>
+            <RadioButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/female_radioButton"
+                android:text="女"
+                android:textColor="@color/Gray"
+                android:textStyle="normal"/>
+        </RadioGroup>
         <Button
             android:id="@+id/register_button_1"
             style="@style/base_button"
+            android:background="@color/Green"
             android:text="Register"
             />
     </LinearLayout>
