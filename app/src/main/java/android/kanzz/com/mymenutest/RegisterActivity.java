@@ -104,7 +104,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                             dialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    
+
                                 }
                             });
                             dialog.show();
