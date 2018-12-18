@@ -22,13 +22,28 @@ public class ContactsAdapter extends ArrayAdapter{
     @Override
     public View getView(int position,View convertView,ViewGroup parent){
         Contacts contacts=(Contacts)getItem(position);
-        View view= LayoutInflater.from(getContext()).inflate(resourceId,parent,false);
-        ImageView contactsImage=(ImageView) view.findViewById(R.id.contacts_image);
-        TextView contactsName=(TextView) view.findViewById(R.id.contacts_name);
-        TextView contactsMessage=(TextView) view.findViewById(R.id.contacts_message);
-        contactsImage.setImageResource(contacts.getImageId());
-        contactsName.setText(contacts.getName());
-        contactsMessage.setText(contacts.getMessage());
+        View view;
+        ViewHolder viewHolder;
+        if(convertView==null){
+            view= LayoutInflater.from(getContext()).inflate(resourceId,parent,false);
+            viewHolder=new ViewHolder();
+            viewHolder.contactsImage=(ImageView)view.findViewById(R.id.contacts_image);
+            viewHolder.contactsName=(TextView)view.findViewById(R.id.contacts_name);
+            viewHolder.contactsMessage=(TextView)view.findViewById(R.id.contacts_message);
+            view.setTag(viewHolder);
+        }else {
+            view=convertView;
+            viewHolder=(ViewHolder)view.getTag();
+        }
+        viewHolder.contactsImage.setImageResource(contacts.getImageId());
+        viewHolder.contactsName.setText(contacts.getName());
+        viewHolder.contactsMessage.setText(contacts.getMessage());
         return view;
+    }
+
+    class ViewHolder{
+        ImageView contactsImage;
+        TextView contactsName;
+        TextView contactsMessage;
     }
 }
