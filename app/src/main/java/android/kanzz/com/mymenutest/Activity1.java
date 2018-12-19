@@ -1,5 +1,6 @@
 package android.kanzz.com.mymenutest;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,12 +10,15 @@ import android.widget.ProgressBar;
 public class Activity1 extends BaseActivity implements View.OnClickListener {
 
     private Button progressButton;
+    private Button offlineButton;
     private ProgressBar mProgressBar;
 
     private void initView(){
         mProgressBar=(ProgressBar)findViewById(R.id.progress_bar_horizontal);
         progressButton=(Button)findViewById(R.id.progress_button);
         progressButton.setOnClickListener(this);
+        offlineButton=(Button)findViewById(R.id.offline_button);
+        offlineButton.setOnClickListener(this);
     }
 
     @Override
@@ -35,6 +39,9 @@ public class Activity1 extends BaseActivity implements View.OnClickListener {
                     mProgressBar.setProgress(progress);
                 }
                 break;
+            case R.id.offline_button:
+                Intent intent=new Intent("android.kanzz.com.mymenutest.FORCE_OFFLINE");
+                sendBroadcast(intent);
         }
     }
 }

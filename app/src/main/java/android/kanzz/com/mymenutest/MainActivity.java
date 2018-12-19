@@ -47,6 +47,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                         Intent intent=new Intent(MainActivity.this,ChooseActivity.class);
                         startActivity(intent);
                         loginCheck=true;
+                        finish();
                     }
                 }
                 if(loginCheck==false)
