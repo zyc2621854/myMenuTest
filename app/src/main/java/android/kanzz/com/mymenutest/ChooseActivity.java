@@ -8,11 +8,13 @@ import android.kanzz.com.mymenutest.Fragement.Friend;
 import android.kanzz.com.mymenutest.ViewPager.ViewPagerFragmentAdapter;
 import android.kanzz.com.mymenutest.view.SlidingTabLayout;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
@@ -41,6 +43,8 @@ public class ChooseActivity extends BaseActivity implements View.OnClickListener
     ViewPagerFragmentAdapter mViewPagerFragmentAdapter;
     FragmentManager mFragmentManager;
     List<Fragment> mFragmentList = new ArrayList<Fragment>();
+    NavigationView mNavigationView;
+    DrawerLayout mDrawerLayout;
 
     public void initViewPager() {
          mViewPager.addOnPageChangeListener(new ViewPagetOnPagerChangedLisenter());
@@ -57,6 +61,9 @@ public class ChooseActivity extends BaseActivity implements View.OnClickListener
          secondRelativeLayout.setOnClickListener(this);
          thirdRelativeLayout = (RelativeLayout) findViewById(R.id.thirdRelativeLayout);
          thirdRelativeLayout.setOnClickListener(this);
+         mNavigationView=(NavigationView)findViewById(R.id.nav_view);
+         mNavigationView.setCheckedItem(R.id.nav_call);
+         mDrawerLayout=(DrawerLayout)findViewById(R.id.drawer_layout);
      }
 
     public void initFragmetList() {
@@ -87,6 +94,9 @@ public class ChooseActivity extends BaseActivity implements View.OnClickListener
                  mViewPager.setCurrentItem(2);
                  updateBottomRelativeLayoutSelect(false,false,true);
                  break;
+//            case R.id.button_test1:
+//                mDrawerLayout.openDrawer(Gravity.LEFT);
+//                break;
              default:
                  break;
          }
@@ -125,6 +135,14 @@ public class ChooseActivity extends BaseActivity implements View.OnClickListener
         mViewPagerFragmentAdapter = new ViewPagerFragmentAdapter(mFragmentManager,mFragmentList);
         initView();
         initViewPager();
+
+        mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener(){
+            @Override
+            public boolean onNavigationItemSelected(MenuItem item){
+                mDrawerLayout.closeDrawers();
+                return true;
+            }
+        });
 //        initListener();
 
 
