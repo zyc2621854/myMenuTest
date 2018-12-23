@@ -28,6 +28,7 @@ import cn.bmob.v3.listener.SaveListener;
 import android.kanzz.com.mymenutest.Entity.User2;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.support.v7.widget.Toolbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +46,7 @@ public class ChooseActivity extends BaseActivity implements View.OnClickListener
     List<Fragment> mFragmentList = new ArrayList<Fragment>();
     NavigationView mNavigationView;
     DrawerLayout mDrawerLayout;
+    Toolbar toolbar;
 
     public void initViewPager() {
          mViewPager.addOnPageChangeListener(new ViewPagetOnPagerChangedLisenter());
@@ -64,6 +66,8 @@ public class ChooseActivity extends BaseActivity implements View.OnClickListener
          mNavigationView=(NavigationView)findViewById(R.id.nav_view);
          mNavigationView.setCheckedItem(R.id.nav_call);
          mDrawerLayout=(DrawerLayout)findViewById(R.id.drawer_layout);
+         toolbar=(Toolbar)findViewById(R.id.toolbar_activity_choose);
+        setSupportActionBar(toolbar);
      }
 
     public void initFragmetList() {
