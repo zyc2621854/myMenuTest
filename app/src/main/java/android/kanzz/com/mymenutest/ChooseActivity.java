@@ -169,12 +169,21 @@ public class ChooseActivity extends BaseActivity implements View.OnClickListener
 //    }
 
     public boolean onCreateOptionsMenu(Menu menu){
-        getMenuInflater().inflate(R.menu.main,menu);
+        getMenuInflater().inflate(R.menu.toolbar,menu);
         return true;
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.backup:
+                ShowToast("You click Backup");
+                break;
+            case R.id.delete:
+                ShowToast("You click Delete");
+                break;
+            case R.id.settings:
+                ShowToast("You click Settings");
+                break;
             case R.id.activity1:
                 Intent intent1 = new Intent(ChooseActivity.this, Activity1.class);
                 startActivity(intent1);

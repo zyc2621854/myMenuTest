@@ -2,6 +2,7 @@ package android.kanzz.com.mymenutest;
 
 import android.kanzz.com.mymenutest.Adapter.FruitAdapter;
 import android.kanzz.com.mymenutest.Entity.Fruit;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +56,13 @@ public class Activity2 extends AppCompatActivity {
         });
 
         Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar_activity_2);
+//        setSupportActionBar(toolbar);
+
+        CollapsingToolbarLayout collapsingToolbar=(CollapsingToolbarLayout)findViewById(R.id.collapsing_toolbar);
+        ImageView fruitImageView=(ImageView)findViewById(R.id.fruit_image_view);
+        collapsingToolbar.setTitle("FruitName");
         setSupportActionBar(toolbar);
+
     }
 
     private void refreshFruits(){
@@ -62,7 +70,7 @@ public class Activity2 extends AppCompatActivity {
             @Override
             public void run() {
                 try{
-                    Thread.sleep(2000);
+                    Thread.sleep(200);
                 }catch (InterruptedException e){
                     e.printStackTrace();
                 }
