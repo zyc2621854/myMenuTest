@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <litepal>
     <dbname value="userTable"></dbname>
-    <version value="1"></version>
+    <version value="2"></version>
 
     <list>
         <mapping class="android.kanzz.com.mymenutest.Entity.User"/>
+        <mapping class="android.kanzz.com.mymenutest.Entity.Province"/>
+        <mapping class="android.kanzz.com.mymenutest.Entity.City"/>
+        <mapping class="android.kanzz.com.mymenutest.Entity.County"/>
     </list>
 </litepal>
