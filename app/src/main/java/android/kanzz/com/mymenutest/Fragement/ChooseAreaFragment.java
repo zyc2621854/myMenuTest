@@ -70,6 +70,7 @@ public class ChooseAreaFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if(currentLevel==LEVEL_PROVINCE){
+                    Log.d("ChooseAreaFragment","点击了省份正在请求城市");
                     selectedProvince=provinceList.get(position);
                     queryCites();
                 }else if(currentLevel==LEVEL_CITY){
@@ -89,17 +90,25 @@ public class ChooseAreaFragment extends Fragment {
                 }
             }
         });
+        Utility.deleteProvinces();
+        Utility.deleteCities();
+        Utility.deleteCounties();
         queryProvinces();
+
     }
 
     private void queryProvinces(){
+
         titleText.setText("中国");
         backButton.setVisibility(View.GONE);
         provinceList= DataSupport.findAll(Province.class);
+        Log.d("ChooseAreaFragment","是否存储了省份");
         if(provinceList.size()>0){
+            Log.d("ChooseAreaFragment","已经存储了省份");
             dataList.clear();
             for(Province province:provinceList){
                 dataList.add(province.getProvinceName());
+                Log.d("ChooseAreaFragment","省份list里存储了"+province.getProvinceName());
             }
             adapter.notifyDataSetChanged();
             listView.setSelection(0);
@@ -107,7 +116,7 @@ public class ChooseAreaFragment extends Fragment {
         }else {
             String address="http://guolin.tech/api/china";
             queryFromServer(address,"province");
-            Log.d("ChooseAreaFragment","访问了服务器");
+            Log.d("ChooseAreaFragment","还没存储省份，去访问服务器");
         }
     }
 
@@ -115,17 +124,22 @@ public class ChooseAreaFragment extends Fragment {
         titleText.setText(selectedProvince.getProvinceName());
         backButton.setVisibility(View.VISIBLE);
         cityList= DataSupport.where("provinceid=?",String.valueOf(selectedProvince.getId())).find(City.class);
+        Log.d("ChooseAreaFragment","是否存储了城市");
         if(cityList.size()>0){
+            Log.d("ChooseAreaFragment","已经储了城市");
             dataList.clear();
             for(City city:cityList){
                 dataList.add(city.getCityName());
+                Log.d("ChooseAreaFragment","城市list存储了"+city.getCityName());
             }
             adapter.notifyDataSetChanged();
-            listView.setSelection(0);
+            listView.setSelection(1);
             currentLevel=LEVEL_CITY;
         }else {
+
             int provinceCode=selectedProvince.getProvinceCode();
-            String address="http://guolin.tech/api/china"+provinceCode;
+            String address="http://guolin.tech/api/china/"+provinceCode;
+            Log.d("ChooseAreaFragment","还没存储城市，准备去服务器访问http://guolin.tech/api/china/"+provinceCode);
             queryFromServer(address,"city");
         }
     }
@@ -134,18 +148,22 @@ public class ChooseAreaFragment extends Fragment {
         titleText.setText(selectedCity.getCityName());
         backButton.setVisibility(View.VISIBLE);
         countyList= DataSupport.where("cityid=?",String.valueOf(selectedCity.getId())).find(County.class);
+        Log.d("ChooseAreaFragment","是否存储了乡村");
         if(countyList.size()>0){
+            Log.d("ChooseAreaFragment","已经储了乡村");
             dataList.clear();
             for(County county:countyList){
                 dataList.add(county.getCountyName());
+                Log.d("ChooseAreaFragment","乡村list存储了"+county.getCountyName());
             }
             adapter.notifyDataSetChanged();
-            listView.setSelection(0);
-            currentLevel=LEVEL_CITY;
+            listView.setSelection(2);
+            currentLevel=LEVEL_COUNTY;
         }else {
             int provinceCode=selectedProvince.getProvinceCode();
             int cityCode=selectedCity.getCityCode();
-            String address="http://guolin.tech/api/china"+provinceCode+"/"+cityCode;
+            String address="http://guolin.tech/api/china/"+provinceCode+"/"+cityCode;
+            Log.d("ChooseAreaFragment","还没存储乡村，准备去服务器访问http://guolin.tech/api/china/"+provinceCode+"/"+cityCode);
             queryFromServer(address,"county");
         }
     }
@@ -160,18 +178,23 @@ public class ChooseAreaFragment extends Fragment {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                Log.d("ChooseAreaFragment","访问成功了");
+                Log.d("ChooseAreaFragment","访问url成功了");
                 String responseText=response.body().string();
                 boolean result=false;
                 if("province".equals(type)){
-                    Log.d("ChooseAreaFragment","正在去解析province");
+                    Log.d("ChooseAreaFragment","正在去解析访问的province返回值");
                     result= Utility.handleProvinceResponse(responseText);//查询后response被解析并存入数据库
                 }else if("city".equals(type)){
+                    Log.d("ChooseAreaFragment","正在去解析访问的city返回值");
                     result=Utility.handleCityResponse(responseText,selectedProvince.getId());
+                    Log.d("ChooseAreaFragment","result获得是否成功存储的信息");
                 }else if("county".equals(type)){
+                    Log.d("ChooseAreaFragment","正在去解析访问的county返回值");
                     result=Utility.handleCountyResponse(responseText,selectedCity.getId());
+                    Log.d("ChooseAreaFragment","result获得是否成功存储的信息");
                 }
                 if (result){
+                    Log.d("ChooseAreaFragment","result成功了");
                     getActivity().runOnUiThread(new Runnable() {
 
                         @Override

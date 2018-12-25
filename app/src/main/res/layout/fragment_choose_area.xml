@@ -8,6 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary">
+        <!--定义头布局为标题栏是因为碎片中最好不要使用toolbar或者actionbar-->
         <TextView
             android:id="@+id/title_text"
             android:layout_width="wrap_content"
