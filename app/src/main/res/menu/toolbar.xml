@@ -18,14 +18,22 @@
         app:showAsAction="always"/>
     <item
         android:id="@+id/activity1"
-        android:title="one"
+        android:title="组件及功能测试"
         app:showAsAction="never"/>
     <item
         android:id="@+id/activity2"
-        android:title="two"
+        android:title="DesginMaterial测试"
         app:showAsAction="never"/>
     <item
         android:id="@+id/activity3"
-        android:title="three"
+        android:title="省市列表测试"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/activity4"
+        android:title="摄像头测试"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/activity5"
+        android:title="摄像头拍照预览"
         app:showAsAction="never"/>
 </menu>

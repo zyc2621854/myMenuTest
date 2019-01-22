@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity1">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_activity_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:title="title"
+        >
+    </android.support.v7.widget.Toolbar>
     <ProgressBar
         android:id="@+id/progress_bar_horizontal"
         style="?android:progressBarStyleHorizontal"

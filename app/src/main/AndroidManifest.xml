@@ -15,6 +15,12 @@
     <!-- 允许读取手机状态 用于创建BmobInstallation -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
     <application
         android:name="org.litepal.LitePalApplication"
         android:allowBackup="true"
@@ -33,10 +39,24 @@
         </activity>
         <activity android:name=".ChooseActivity" />
         <activity android:name=".Activity1" />
-        <activity android:name=".Activity2"
-            android:label="Fruits"/>
+        <activity
+            android:name=".Activity2"
+            android:label="Fruits" />
         <activity android:name=".Activity3" />
-        <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".Activity4" />
+        <activity android:name=".Activity5"/>
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="android.kanzz.com.mymenutest.fileprovider"
+            android:grantUriPermissions="true"
+            android:label="false">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+
     </application>
 
 </manifest>
