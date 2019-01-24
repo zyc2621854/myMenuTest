@@ -58,6 +58,7 @@ public class Activity4 extends BaseActivity {
                 if(Build.VERSION.SDK_INT>=24){
 //                    FileProvider，就是 ContentProvider 的一个特殊子类，提高共享的安全性
 //                    帮助我们将访问受限的 file:// URI 转化为可以授权共享的 content:// URI。
+//                    getUriForFile关联缓存目录来存图片
                     imageUri= FileProvider.getUriForFile(Activity4.this,"android.kanzz.com.mymenutest.fileprovider",outputImage);
                 }else {
                     imageUri=Uri.fromFile(outputImage);
@@ -84,21 +85,8 @@ public class Activity4 extends BaseActivity {
     private void openAlbum(){
         Intent intent=new Intent("android.intent.action.GET_CONTENT");
         intent.setType("image/*");
+        //此处传入了选择照片的常量
         startActivityForResult(intent,CHOOSE_PHOTO);
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode,String[] permissions,int[] grantResults){
-        switch (requestCode){
-            case 1:
-                if(grantResults.length>0&&grantResults[0]==PackageManager.PERMISSION_GRANTED){
-                    openAlbum();
-                }else {
-                    ShowToast("You denied the permission");
-                }
-                break;
-            default:
-        }
     }
 
     @Override
@@ -120,18 +108,33 @@ public class Activity4 extends BaseActivity {
                 if(resultCode==RESULT_OK){
                     handleImageOnKitKat(data);
                 }
-                default:break;
+            default:break;
         }
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode,String[] permissions,int[] grantResults){
+        switch (requestCode){
+            case 1:
+                if(grantResults.length>0&&grantResults[0]==PackageManager.PERMISSION_GRANTED){
+                    openAlbum();
+                }else {
+                    ShowToast("You denied the permission");
+                }
+                break;
+            default:
+        }
+    }
 
 //    新版本选取相册图片不再返回真实值，需要解析URI
     @TargetApi(19)
     private void handleImageOnKitKat(Intent data){
         String imagePath =null;
         Uri uri=data.getData();
+        //如果取出是Document类型，就采用ducumentid进行处理
         if(DocumentsContract.isDocumentUri(this,uri)){
             String docId=DocumentsContract.getDocumentId(uri);
+            //如果uri的authority是media格式，documentid还需再解析一次
             if("com.android.providers.media.documents".equals(uri.getAuthority())){
                 String id=docId.split(":")[1];
                 String selection=MediaStore.Images.Media._ID+"="+id;

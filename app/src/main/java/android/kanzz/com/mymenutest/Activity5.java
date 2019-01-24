@@ -16,6 +16,7 @@ import android.hardware.Camera;
 import android.hardware.Camera.PictureCallback;
 import android.kanzz.com.mymenutest.CameraPreview;
 import android.kanzz.com.mymenutest.R;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
@@ -27,9 +28,9 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 
 //import com.example.mycamera.R.id;
-
+//屏蔽一切新api中才能使用的方法报的android lint错误
 @SuppressLint("NewApi")
-public class Activity5 extends BaseActivity {
+public class  Activity5 extends BaseActivity {
     public static final int MEDIA_TYPE_IMAGE = 1;
     public static final int MEDIA_TYPE_VIDEO = 2;
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
@@ -66,6 +67,10 @@ public class Activity5 extends BaseActivity {
         setContentView(R.layout.activity_5);
 
         // 创建Camera实例
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ContextCompat.checkSelfPermission(Activity5.this,Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(Activity5.this,new String[] {Manifest.permission.CAMERA}, 1);
+            } }
         mCamera = getCameraInstance();
         // 创建Preview view并将其设为activity中的内容
         mPreview = new CameraPreview(this, mCamera);
@@ -90,7 +95,10 @@ public class Activity5 extends BaseActivity {
 
     public static Camera getCameraInstance() {
         Camera c = null;
+
         try {
+
+
             c = Camera.open(); // 试图获取Camera实例
         }
         catch (Exception e) {

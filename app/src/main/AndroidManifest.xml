@@ -14,12 +14,12 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <!-- 允许读取手机状态 用于创建BmobInstallation -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-feature android:name="android.hardware.camera" />
-    <uses-feature android:name="android.hardware.camera.autofocus" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <!--<uses-feature-->
+        <!--android:name="android.hardware.camera" />-->
+    <!--<uses-feature-->
+        <!--android:name="android.hardware.camera.autofocus" />-->
+    <!--<uses-permission-->
+        <!--android:name="android.permission.CAMERA"></uses-permission>-->
 
     <application
         android:name="org.litepal.LitePalApplication"
@@ -45,18 +45,21 @@
         <activity android:name=".Activity3" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".Activity4" />
-        <activity android:name=".Activity5"/>
+        <activity android:name=".Activity5" />
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="android.kanzz.com.mymenutest.fileprovider"
             android:grantUriPermissions="true"
             android:label="false">
+
+            <!-- metadata指定uri共享路径 -->
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
 
-
+        <activity android:name=".Activity6"></activity>
     </application>
 
 </manifest>

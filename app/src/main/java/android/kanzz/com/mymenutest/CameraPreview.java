@@ -22,7 +22,7 @@ public class CameraPreview extends TextureView implements
 
     public void onSurfaceTextureAvailable(SurfaceTexture surface, int width,
                                           int height) {
-
+        if(mCamera!=null){ mCamera.release();}
         mCamera = Camera.open();
         try {
             mCamera.setPreviewTexture(surface);

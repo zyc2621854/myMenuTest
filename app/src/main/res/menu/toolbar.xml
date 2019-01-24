@@ -36,4 +36,8 @@
         android:id="@+id/activity5"
         android:title="摄像头拍照预览"
         app:showAsAction="never"/>
+    <item
+        android:id="@+id/activity6"
+        android:title="上传图片"
+        app:showAsAction="never"/>
 </menu>
