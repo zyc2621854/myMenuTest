@@ -14,13 +14,18 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <!-- 允许读取手机状态 用于创建BmobInstallation -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <!--<uses-feature-->
-        <!--android:name="android.hardware.camera" />-->
-    <!--<uses-feature-->
-        <!--android:name="android.hardware.camera.autofocus" />-->
-    <!--<uses-permission-->
-        <!--android:name="android.permission.CAMERA"></uses-permission>-->
+    <!-- if you want to load images from a file OR from the internet -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <!-- <uses-feature -->
+    <!-- android:name="android.hardware.camera" /> -->
+    <!-- <uses-feature -->
+    <!-- android:name="android.hardware.camera.autofocus" /> -->
+    <!-- <uses-permission -->
+    <!-- android:name="android.permission.CAMERA"></uses-permission> -->
     <application
         android:name="org.litepal.LitePalApplication"
         android:allowBackup="true"
@@ -59,7 +64,8 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <activity android:name=".Activity6"></activity>
+        <activity android:name=".Activity6" />
+        <activity android:name=".Activity7"></activity>
     </application>
 
 </manifest>

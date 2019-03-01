@@ -57,7 +57,7 @@ public class Activity1 extends BaseActivity implements View.OnClickListener {
                     @Override
                     public void onFinish(String response) {
                         Log.d("Activity1",response);
-//                        ShowToast("成功");
+                        ShowToast("成功");
                     }
 
                     @Override
