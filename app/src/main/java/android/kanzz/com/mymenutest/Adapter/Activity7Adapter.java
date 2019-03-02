@@ -1,5 +1,6 @@
 package android.kanzz.com.mymenutest.Adapter;
 
+import android.kanzz.com.mymenutest.Activity7;
 import android.kanzz.com.mymenutest.Entity.RecyclerView_item1;
 import android.kanzz.com.mymenutest.R;
 import android.support.v7.widget.RecyclerView;
@@ -7,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -14,6 +16,7 @@ public class Activity7Adapter extends RecyclerView.Adapter<Activity7Adapter.View
 
 
     private List<RecyclerView_item1> mRecyclerView_item1List;
+    private Toast mToast;
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView touXiang;
@@ -37,9 +40,31 @@ public class Activity7Adapter extends RecyclerView.Adapter<Activity7Adapter.View
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent,int viewType){
+    public ViewHolder onCreateViewHolder(final ViewGroup parent, int viewType){
         View v=View.inflate(parent.getContext(),R.layout.recyclerviewitem1,null);
-        return new ViewHolder(v);
+        final ViewHolder viewHolder=new ViewHolder(v);
+        viewHolder.author.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mToast=Toast.makeText(parent.getContext(),"作者",Toast.LENGTH_SHORT);
+                mToast.show();
+            }
+        });
+        viewHolder.abstarctText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mToast=Toast.makeText(parent.getContext(),"文字哦",Toast.LENGTH_SHORT);
+                mToast.show();
+            }
+        });
+        viewHolder.abstactImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mToast=Toast.makeText(parent.getContext(),"图片哦",Toast.LENGTH_SHORT);
+                mToast.show();
+            }
+        });
+        return viewHolder;
     }
 
     @Override
