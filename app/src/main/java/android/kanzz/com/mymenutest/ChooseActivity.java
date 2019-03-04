@@ -219,6 +219,11 @@ public class ChooseActivity extends BaseActivity implements View.OnClickListener
                 startActivity(intent7);
                 finish();
                 break;
+            case R.id.activity8:
+                Intent intent8 = new Intent(ChooseActivity.this, Activity8.class);
+                startActivity(intent8);
+                finish();
+                break;
             default:
         }
         return true;

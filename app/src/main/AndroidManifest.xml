@@ -16,10 +16,9 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <!-- if you want to load images from a file OR from the internet -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <!-- <uses-feature -->
     <!-- android:name="android.hardware.camera" /> -->
     <!-- <uses-feature -->
@@ -65,7 +64,8 @@
         </provider>
 
         <activity android:name=".Activity6" />
-        <activity android:name=".Activity7"></activity>
+        <activity android:name=".Activity7" />
+        <activity android:name=".Activity8"></activity>
     </application>
 
 </manifest>
