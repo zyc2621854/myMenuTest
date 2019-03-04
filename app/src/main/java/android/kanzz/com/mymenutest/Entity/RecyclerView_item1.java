@@ -1,6 +1,6 @@
 package android.kanzz.com.mymenutest.Entity;
 
-public class RecyclerView_item1 {
+public class RecyclerView_item1 extends RecyclerView_baseitem{
     private int touXiang;
     private String author;
     private String Time;

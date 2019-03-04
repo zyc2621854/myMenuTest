@@ -3,7 +3,9 @@ package android.kanzz.com.mymenutest;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.kanzz.com.mymenutest.Adapter.Activity7Adapter;
+import android.kanzz.com.mymenutest.Entity.RecyclerView_baseitem;
 import android.kanzz.com.mymenutest.Entity.RecyclerView_item1;
+import android.kanzz.com.mymenutest.Entity.RecyclerView_itemTitle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -31,12 +33,10 @@ import static org.litepal.LitePalApplication.getContext;
 
 public class Activity7 extends BaseActivity {
 
-    SliderLayout slider;
-    PagerIndicator mIndicator;
+
     Toolbar mToolbar;
     RecyclerView mRecyclerView;
-    List<RecyclerView_item1> item1=new ArrayList<>();
-
+    List<RecyclerView_baseitem> item1 = new ArrayList<>();
 
 
     @Override
@@ -48,110 +48,98 @@ public class Activity7 extends BaseActivity {
                 != PackageManager.PERMISSION_GRANTED) {
         }
         InitView();
+        InitTitle();
         InitListItem();
         InitRecyclerView();
-        List<Integer> imageR=new ArrayList<Integer>();
-        final List<String> description=new ArrayList<String>();
+
+
+
+//        slider.addOnPageChangeListener(new ViewPagerEx.OnPageChangeListener() {
+//            @Override
+//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+//
+//            }
+//
+//            @Override
+//            public void onPageSelected(int position) {
+//
+//            }
+//
+//            @Override
+//            public void onPageScrollStateChanged(int state) {
+//
+//            }
+//        });
+
+
+    }
+
+    protected void InitTitle() {
+        List<Integer> imageR = new ArrayList<Integer>();
+        final List<String> description = new ArrayList<String>();
         imageR.add(R.drawable.img_1_small1);
         imageR.add(R.drawable.img_1_small2);
         imageR.add(R.drawable.img_2_small1);
         description.add("育儿");
         description.add("IT");
         description.add("耐克");
-
-
-
-        for(int i=0;i<imageR.size();i++){
-            TextSliderView textSliderView=new TextSliderView(this);
-
-            textSliderView
-                    .image(imageR.get(i))
-                    .description(description.get(i))
-                    .setOnSliderClickListener(new BaseSliderView.OnSliderClickListener() {
-                @Override
-                public void onSliderClick(BaseSliderView slider) {
-                    String text=slider.getDescription();
-                    ShowToast(text);
-                }
-            });
-            slider.addSlider(textSliderView);
-        }
-
-
-        slider.setCustomAnimation(new DescriptionAnimation());
-        slider.setPresetTransformer(SliderLayout.Transformer.Accordion);
-        slider.setDuration(3000);
-        slider.setCustomIndicator(mIndicator);
-        slider.addOnPageChangeListener(new ViewPagerEx.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
-
-
-
+        RecyclerView_itemTitle titleBean = new RecyclerView_itemTitle();
+        titleBean.setImageR(imageR);
+        titleBean.setDescription(description);
+        titleBean.setViewType(Activity7Adapter.TITLE);
+        item1.add(titleBean);
     }
 
-
-
-    protected void InitListItem(){
-        RecyclerView_item1 item_a=new RecyclerView_item1(R.drawable.apple,"apple","2018-2-22","abcd",R.drawable.blackbrain);
+    protected void InitListItem() {
+        RecyclerView_item1 item_a = new RecyclerView_item1(R.drawable.apple, "apple", "2018-2-22", "abcd", R.drawable.blackbrain);
+        item_a.setViewType(Activity7Adapter.BODY);
         item1.add(item_a);
-        RecyclerView_item1 item_b=new RecyclerView_item1(R.drawable.banana,"banana","2018-2-23","efgh",R.drawable.blackmail);
+        RecyclerView_item1 item_b = new RecyclerView_item1(R.drawable.banana, "banana", "2018-2-23", "efgh", R.drawable.blackmail);
+        item_b.setViewType(Activity7Adapter.BODY);
         item1.add(item_b);
-        RecyclerView_item1 item_c=new RecyclerView_item1(R.drawable.cherry,"cherry","2018-2-24","hijk",R.drawable.blackmusic);
+        RecyclerView_item1 item_c = new RecyclerView_item1(R.drawable.cherry, "cherry", "2018-2-24", "hijk", R.drawable.blackmusic);
+        item_c.setViewType(Activity7Adapter.BODY);
         item1.add(item_c);
     }
 
-    protected void InitRecyclerView(){
-        LinearLayoutManager lm=new LinearLayoutManager(this);
-        Activity7Adapter adapter=new Activity7Adapter(item1);
-        mRecyclerView.setLayoutManager(lm);
+    protected void InitRecyclerView() {
+        LinearLayoutManager lm = new LinearLayoutManager(this);
+        Activity7Adapter adapter = new Activity7Adapter(item1);
         mRecyclerView.setAdapter(adapter);
+        mRecyclerView.setLayoutManager(lm);
     }
 
 
-    protected void InitView(){
-        slider=(SliderLayout)findViewById(R.id.activity7_slider);
-        mIndicator=(PagerIndicator)findViewById(R.id.custom_indicator);
-        mToolbar=(Toolbar)findViewById(R.id.toolbar_activity7);
+    protected void InitView() {
+
+        mToolbar = (Toolbar) findViewById(R.id.toolbar_activity7);
         setSupportActionBar(mToolbar);
-        mRecyclerView=(RecyclerView)findViewById(R.id.activity7_rv);
-    }
-
-    @Override
-    protected void onStop() {
-        slider.stopAutoCycle();
-        super.onStop();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity7_menu,menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.activity7_menu_item1:
-                slider.setPresetTransformer(SliderLayout.Transformer.RotateUp);
-            case R.id.activity7_menu_item2:
-                slider.setPresetTransformer(SliderLayout.Transformer.Background2Foreground);
-            case R.id.activity7_menu_item3:
-                slider.setPresetTransformer(SliderLayout.Transformer.Fade);
-        }
-        return true;
+        mRecyclerView = (RecyclerView) findViewById(R.id.activity7_rv);
     }
 }
+
+//    @Override
+//    protected void onStop() {
+//        slider.stopAutoCycle();
+//        super.onStop();
+//    }
+
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.activity7_menu,menu);
+//        return super.onCreateOptionsMenu(menu);
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        switch (item.getItemId()){
+//            case R.id.activity7_menu_item1:
+//                slider.setPresetTransformer(SliderLayout.Transformer.RotateUp);
+//            case R.id.activity7_menu_item2:
+//                slider.setPresetTransformer(SliderLayout.Transformer.Background2Foreground);
+//            case R.id.activity7_menu_item3:
+//                slider.setPresetTransformer(SliderLayout.Transformer.Fade);
+//        }
+//        return true;
+//    }
+//}
