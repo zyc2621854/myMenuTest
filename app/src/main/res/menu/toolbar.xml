@@ -48,4 +48,12 @@
         android:id="@+id/activity8"
         android:title="常用Activity界面2"
         app:showAsAction="never"/>
+    <item
+        android:id="@+id/activity9"
+        android:title="常用Activity界面3"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/activity10"
+        android:title="常用Activity界面4"
+        app:showAsAction="never"/>
 </menu>

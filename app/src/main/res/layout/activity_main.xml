@@ -66,6 +66,7 @@
                         android:text="Account:"
                         android:gravity="center"
                         />
+
                     <EditText
                         android:id="@+id/edit_account"
                         android:layout_marginVertical="5dp"

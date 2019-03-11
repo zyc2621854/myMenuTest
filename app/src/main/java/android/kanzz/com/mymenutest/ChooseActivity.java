@@ -1,33 +1,25 @@
 package android.kanzz.com.mymenutest;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.kanzz.com.mymenutest.Fragement.Chat;
 import android.kanzz.com.mymenutest.Fragement.Find;
 import android.kanzz.com.mymenutest.Fragement.Friend;
-import android.kanzz.com.mymenutest.ViewPager.ViewPagerFragmentAdapter;
-import android.kanzz.com.mymenutest.view.SlidingTabLayout;
+import android.kanzz.com.mymenutest.Adapter.ViewPagerFragmentAdapter;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
 import android.kanzz.com.mymenutest.Entity.User2;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.support.v7.widget.Toolbar;
 
 import java.util.ArrayList;
@@ -222,6 +214,16 @@ public class ChooseActivity extends BaseActivity implements View.OnClickListener
             case R.id.activity8:
                 Intent intent8 = new Intent(ChooseActivity.this, Activity8.class);
                 startActivity(intent8);
+                finish();
+                break;
+            case R.id.activity9:
+                Intent intent9 = new Intent(ChooseActivity.this, Activity9.class);
+                startActivity(intent9);
+                finish();
+                break;
+            case R.id.activity10:
+                Intent intent10 = new Intent(ChooseActivity.this, Activity10.class);
+                startActivity(intent10);
                 finish();
                 break;
             default:

@@ -1,4 +1,4 @@
-package android.kanzz.com.mymenutest.ViewPager;
+package android.kanzz.com.mymenutest.Adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -9,6 +9,7 @@ import java.util.List;
 
 public class ViewPagerFragmentAdapter extends FragmentPagerAdapter {
 
+    private static String a[]={"嘻嘻","哈哈","尕尕"};
     private List<Fragment> mList=new ArrayList<Fragment>();
     public ViewPagerFragmentAdapter(FragmentManager fm,List<Fragment> list){
         super(fm);
@@ -23,5 +24,10 @@ public class ViewPagerFragmentAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount(){
         return mList!=null?mList.size():0;
+    }
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return a[position];
     }
 }
