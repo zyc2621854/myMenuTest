@@ -1,8 +1,10 @@
 package android.kanzz.com.mymenutest;
 
 import android.content.Intent;
+import android.kanzz.com.mymenutest.Network.FlickrFetchr;
 import android.kanzz.com.mymenutest.Network.HttpCallbackListener;
 import android.kanzz.com.mymenutest.Network.HttpUtil;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,13 +12,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 
+import java.io.IOException;
+
 public class Activity1 extends BaseActivity implements View.OnClickListener {
+
+    private static String Tag="Activity1";
 
     private Button progressButton;
     private Button offlineButton;
     private Button testNetworkButton;
     private ProgressBar mProgressBar;
     private String address;
+
 
     private void initView(){
         mProgressBar=(ProgressBar)findViewById(R.id.progress_bar_horizontal);
@@ -34,6 +41,7 @@ public class Activity1 extends BaseActivity implements View.OnClickListener {
         setContentView(R.layout.activity_1);
         initView();
         address="https://www.baidu.com";
+        new FetchItemsTask().execute();
     }
 
     @Override
@@ -68,4 +76,6 @@ public class Activity1 extends BaseActivity implements View.OnClickListener {
                 break;
         }
     }
+
+
 }

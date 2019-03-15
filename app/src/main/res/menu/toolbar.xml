@@ -56,4 +56,8 @@
         android:id="@+id/activity10"
         android:title="常用Activity界面4"
         app:showAsAction="never"/>
+    <item
+        android:id="@+id/activity11"
+        android:title="Flickr图片下载测试"
+        app:showAsAction="never"/>
 </menu>

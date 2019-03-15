@@ -47,11 +47,11 @@ public class NumberAddSubView extends RelativeLayout implements View.OnClickList
         setMaxValue(maxVal);
         int minVal = a.getInt(R.styleable.NumberAddSubView_minValue, 1);
         setMinValue(minVal);
-        Drawable btnBg=a.getDrawable(R.styleable.NumberAddSubView_btnDrawable);
-        if(btnBg!=null){
-            btn_add.setBackgroundDrawable(btnBg);
-            btn_sub.setBackgroundDrawable(btnBg);
-        }
+//        Drawable btnBg=a.getDrawable(R.styleable.NumberAddSubView_btnDrawable);
+//        if(btnBg!=null){
+//            btn_add.setBackgroundDrawable(btnBg);
+//            btn_sub.setBackgroundDrawable(btnBg);
+//        }
         a.recycle();
     }
 
